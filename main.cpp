@@ -33,8 +33,9 @@ int main() {
         { "A", "B", "C", "D", s_sym },
         {   r1, r2,
             { {"A"}, {"B"} },
-            { {s_sym}, {"B"} },
-            { {"A"}, {"B", s_sym, "A"} },
+            { { s_sym }, { "B" } },
+            { { "A" }, { "B", s_sym, "A" } },
+            string("A.B -> A.B"),
         },
         s_sym
     );

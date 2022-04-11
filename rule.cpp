@@ -15,13 +15,17 @@ namespace grammars {
         auto start = 0U;
         auto end = s.find(sym_delim);
         
+        Symbol cur;
         while(end != string::npos) {
-            Symbol cur(s.substr(start, end - start));
+            cur = s.substr(start, end - start);
             start = end + delim_len;
             ret.push_back(cur);
 
-            auto end = s.find(sym_delim, start);
+            end = s.find(sym_delim, start);
         }
+        
+        cur = s.substr(start, end - start);
+        ret.push_back(cur);
 
         return ret;
     }
@@ -111,6 +115,6 @@ namespace grammars {
     }
 
     std::ostream &operator<<(std::ostream &out, const Rule &r) {
-        return out << r.to_string();
+        return out << r.to_string(); 
     }
 }

@@ -21,7 +21,6 @@ namespace grammars {
     }
 
     std::ostream &operator<<(std::ostream &out, const Grammar &g) {
-        
         out << "T: { ";
         for(const auto &e : g.terminals) {
             out << e.name() << " ";
