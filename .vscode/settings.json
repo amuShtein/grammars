@@ -1,0 +1,16 @@
+{
+    "files.associations": {
+        "unordered_set": "cpp",
+        "iosfwd": "cpp",
+        "*.tcc": "cpp",
+        "bitset": "cpp",
+        "cstddef": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "ostream": "cpp",
+        "system_error": "cpp",
+        "thread": "cpp",
+        "type_traits": "cpp",
+        "iostream": "cpp"
+    }
+}
