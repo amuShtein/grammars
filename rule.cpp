@@ -7,7 +7,8 @@ namespace grammars {
 
     static vector<Symbol> parse_to_vector (
         const string &s,
-        char sym_delim
+        char sym_delim,
+        const Symbol &eps
     )
     {   
         vector<Symbol> ret;
@@ -25,14 +26,17 @@ namespace grammars {
         }
         
         cur = s.substr(start, end - start);
-        ret.push_back(cur);
+        if(!(cur == eps)) {
+            ret.push_back(cur);
+        }
 
         return ret;
     }
 
     Rule::Rule(string s,
         char sym_delim, 
-        const string &arrow
+        const string &arrow,
+        const Symbol &eps
         )
     {   
         s.erase(remove_if(s.begin(), s.end(), isspace), s.end());
@@ -45,25 +49,30 @@ namespace grammars {
             r = s.substr(mid + arrow.length());
         }
 
-        left = parse_to_vector(l, sym_delim);
-        right = parse_to_vector(r, sym_delim);
+        left = parse_to_vector(l, sym_delim, eps);
+        
+        if(left.empty()) {
+            throw std::logic_error("empty left side of rule " + s);
+        }
+
+        right = parse_to_vector(r, sym_delim, eps);
     }
 
     bool Rule::verify(const set<Symbol> &terminals, 
-        const set<Symbol> &non_terminals, 
-        const Symbol &eps) const 
+        const set<Symbol> &non_terminals) const 
     {
         for(auto &e: left) {
-            if(terminals.count(e) == 0 && non_terminals.count(e) == 0 && !(e == eps)) {
+            if(terminals.count(e) == 0 && non_terminals.count(e) == 0) {
                 return false;
             }
         }
 
         for(auto &e: right) {
-            if(terminals.count(e) == 0 && non_terminals.count(e) == 0 && !(e == eps)) {
+            if(terminals.count(e) == 0 && non_terminals.count(e) == 0) {
                 return false;
             }
         }
+
         return true;
     }
 
@@ -75,7 +84,7 @@ namespace grammars {
         return right;
     }
 
-    string Rule::to_string(const string& arrow, char delim, bool use_delim) const {
+    string Rule::to_string(const string& arrow, char delim, bool use_delim, const Symbol &eps) const {
         using std::stringstream;
         
         stringstream ss;
@@ -87,6 +96,7 @@ namespace grammars {
                 if(use_delim) {
                     ss << delim;
                 }
+
                 ss << lit->name();
             }
         };
@@ -103,7 +113,9 @@ namespace grammars {
                 }
                 ss << rit->name();
             }
-        };
+        } else {
+            ss << eps.name();
+        }
 
         return ss.str();
     }
