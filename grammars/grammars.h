@@ -68,8 +68,8 @@ namespace grammars {
         vector<Rule> rules;
         Symbol start;
 
-        int32_t info = 0 || GR_BIT(TYPE_0);
-        int32_t inf_valid = 0 || GR_BIT(TYPE_0);
+        int32_t info = 0 | GR_BIT(TYPE_0);
+        int32_t inf_valid = 0 | GR_BIT(TYPE_0);
     public:
         Grammar(const set<Symbol> &t, 
         const set<Symbol> &nt, 
