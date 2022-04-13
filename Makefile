@@ -28,6 +28,6 @@ run: $(program_name)
 	./$(program_name)
 
 clear:
-	rm *.o
+	rm $(obj) $(main_obj)
 	rm $(program_name)
 
