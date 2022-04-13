@@ -80,7 +80,7 @@ int main() {
             string("S -> a"),
             string("S -> @"),
             string("A -> a"),
-            string("A -> A.a"),
+            string("A -> A.a.a"),
         },
         "S"
     );
