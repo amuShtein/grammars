@@ -1,5 +1,5 @@
 files := symbol.o rule.o grammar_types.o grammars.o grammar_check.o main.o
-program_name := run_gram
+program_name := run_gram.out
 
 %.o: %.cpp
 	g++ -c $^ -o $@
