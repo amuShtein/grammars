@@ -1,6 +1,6 @@
 #include <string>
 #include <iostream>
-#include "grammars.h"
+#include "grammars/grammars.h"
 
 using namespace std;
 
