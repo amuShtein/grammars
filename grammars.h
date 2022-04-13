@@ -29,6 +29,7 @@ namespace grammars {
         vector<Symbol> left, right;
         string default_arrow = "->";
         char default_delim = '.';
+
     public:
         Rule(const vector<Symbol> &l, const vector<Symbol> &r) : left(l), right(r) { };
         Rule(string s, char sym_delim = '.', const string &arrow = "->", const Symbol &eps = "@");
@@ -43,6 +44,17 @@ namespace grammars {
 
         string getDefaultArrow() const;
         char getDefaultDelim() const;
+
+        int lenLeft() const { return left.size(); };
+        int lenRight() const { return right.size(); };
+        Symbol symLeft(int i) const { return left[i]; };
+        Symbol symRight(int i) const { return right[i]; };
+
+        Symbol frontLeft() const { return left.front(); };
+        Symbol backLeft() const { return left.back(); };
+        
+        Symbol frontRight() const { return right.front(); };
+        Symbol backRight() const { return right.back(); };
 
         string to_string(bool use_delim = false) const;
         string to_string(const string& arrow, bool use_delim = false) const;

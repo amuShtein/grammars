@@ -20,6 +20,8 @@ namespace grammars {
 
         AUTOMATIC = 7
     };
+
+    // const char** NAMES;
 }
 
 #endif
