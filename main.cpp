@@ -74,18 +74,36 @@ int main() {
 
     Grammar g1(
         { "a" },
-        { "S", "A" },
+        { "S", "A", "C", "B" },
         {   
             string("S -> A.a"),
             string("S -> a"),
             string("S -> @"),
             string("A -> a"),
             string("A -> A.a.a"),
+            string("A -> C.a.a"),
+            string("B -> C.a.a"),
+            string("C -> C"),
         },
+
         "S"
     );
     
     cout << "parsed" << endl;
+
+    cout << "gramm g1: " << endl << g1 << endl;
+
+    cout << NAMES[TYPE_0] << " :" << g1.check_if_type_zero() << endl;
+    cout << NAMES[NONCONTR] << " :" << g1.check_if_noncontracting() << endl;
+    cout << NAMES[CONT_SENS] << " :" << g1.check_if_context_sensitive() << endl;
+    cout << NAMES[CONT_FREE] << " :" << g1.check_if_context_free() << endl;
+    cout << NAMES[REGULAR] << " :" << g1.check_if_regular() << endl;
+    cout << NAMES[REGULAR_RIGHT] << " :" << g1.check_if_regular_right() << endl;
+    cout << NAMES[REGULAR_LEFT] << " :" << g1.check_if_regular_left() << endl;
+    cout << NAMES[AUTOMATIC] << " :" << g1.check_if_automatic() << endl;
+
+    cout << "remove_barren_characters" << endl;
+    g1.remove_barren_characters();
 
     cout << "gramm g1: " << endl << g1 << endl;
 

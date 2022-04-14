@@ -93,6 +93,9 @@ namespace grammars {
         bool check_if_regular_left();
         bool check_if_regular_right();
         bool check_if_automatic();
+
+        void remove_barren_characters();
+        void remove_unreachable_characters();
     };
 }
 
