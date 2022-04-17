@@ -56,6 +56,9 @@ namespace grammars {
         Symbol frontRight() const { return right.front(); };
         Symbol backRight() const { return right.back(); };
 
+        void pushBackRight(const Symbol &s) { right.push_back(s); };
+        void pushBackLeft(const Symbol &s) { left.push_back(s); };
+
         string to_string(bool use_delim = false) const;
         string to_string(const string& arrow, bool use_delim = false) const;
         string to_string(const string& arrow, char delim, bool use_delim = false, const Symbol &eps = "@") const;
@@ -96,6 +99,9 @@ namespace grammars {
 
         void remove_barren_characters();
         void remove_unreachable_characters();
+
+        void reduce_context_free();
+        void make_noncontracting();
     };
 }
 

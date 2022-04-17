@@ -72,18 +72,58 @@ int main() {
     //     "S"
     // );
 
+    // Grammar g1(
+    //     { "a", "b"},
+    //     { "S", "A", "C", "B" },
+    //     {   
+    //         string("S -> a.S"),
+    //         string("S -> S.a"),
+    //         string("S -> C"),
+    //         string("C -> C.C"),
+    //         string("C -> b.A"),
+    //         string("C -> @"),
+    //         string("A -> a.B"),
+    //         string("A -> @"),
+    //         string("B -> a.A"),
+    //         string("B -> a"),
+    //     },
+
+    //     "S"
+    // );
+
+    // Grammar g1(
+    //     { "a", "b", "c", "d"},
+    //     { "S", "A", "C", "B" },
+    //     {   
+    //         string("S -> a.B.S"),
+    //         string("S -> b.C.A.C.d"),
+    //         string("A -> b.A.B"),
+    //         string("A -> c.S.A"),
+    //         string("A -> c.C.C"),
+    //         string("B -> b.A.B"),
+    //         string("B -> c.S.B"),
+    //         string("C -> c.S"),
+    //         string("C -> c"),
+    //     },
+
+    //     "S"
+    // );
     Grammar g1(
-        { "a" },
-        { "S", "A", "C", "B" },
+        { "a", "b", "c", "d", "e", "f", "g"},
+        { "S", "A", "B", "C", "E", "D" },
         {   
-            string("S -> A.a"),
-            string("S -> a"),
-            string("S -> @"),
-            string("A -> a"),
-            string("A -> A.a.a"),
-            string("A -> C.a.a"),
-            string("B -> C.a.a"),
-            string("C -> C"),
+            string("S -> a.A.B"),
+            string("S -> E"),
+            string("A -> d.D.A"),
+            string("A -> @"),
+            string("B -> b.E"),
+            string("B -> f"),
+            string("C -> c.A.B"),
+            string("C -> d.S.D"),
+            string("C -> a"),
+            string("D -> e.A"),
+            string("E -> f.A"),
+            string("E -> g"),
         },
 
         "S"
@@ -102,8 +142,8 @@ int main() {
     cout << NAMES[REGULAR_LEFT] << " :" << g1.check_if_regular_left() << endl;
     cout << NAMES[AUTOMATIC] << " :" << g1.check_if_automatic() << endl;
 
-    cout << "remove_barren_characters" << endl;
-    g1.remove_barren_characters();
+    // cout << "make_noncontracting" << endl;
+    g1.reduce_context_free();
 
     cout << "gramm g1: " << endl << g1 << endl;
 
