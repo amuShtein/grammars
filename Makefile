@@ -6,7 +6,7 @@ main_file := main.cpp
 
 build_folder := build
 source_folder := grammars
-source := symbol.cpp rule.cpp grammar_types.cpp grammars.cpp grammar_check.cpp context_free_algo.cpp
+source := symbol.cpp rule.cpp grammar_types.cpp grammars.cpp grammar_check.cpp context_free_algo.cpp automata.cpp
 
 options = -std=c++20
 
@@ -14,6 +14,8 @@ obj=$(join $(addsuffix $(build_folder)/, $(dir $(source))), $(notdir $(source:.c
 main_obj := $(build_folder)/$(main_file:.cpp=.o)
 
 program_name := run_gram.out
+
+default: build
 
 $(main_obj): $(main_file)
 	g++ -c $(options) $^ -o $@

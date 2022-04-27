@@ -71,8 +71,8 @@ namespace grammars {
         vector<Rule> rules;
         Symbol start;
 
-        int32_t info = 0 | GR_BIT(TYPE_0);
-        int32_t inf_valid = 0 | GR_BIT(TYPE_0);
+        mutable int32_t info = 0 | GR_BIT(TYPE_0);
+        mutable int32_t inf_valid = 0 | GR_BIT(TYPE_0);
     public:
         Grammar(const set<Symbol> &t, 
         const set<Symbol> &nt, 
@@ -88,20 +88,23 @@ namespace grammars {
     
         friend std::ostream &operator<<(std::ostream &out, const Grammar &g);
 
-        bool check_if_type_zero();
-        bool check_if_context_sensitive();
-        bool check_if_noncontracting();
-        bool check_if_context_free();
-        bool check_if_regular();
-        bool check_if_regular_left();
-        bool check_if_regular_right();
-        bool check_if_automatic();
+        bool check_if_type_zero() const;
+        bool check_if_context_sensitive() const;
+        bool check_if_noncontracting() const;
+        bool check_if_context_free() const;
+        bool check_if_regular() const;
+        bool check_if_regular_left() const;
+        bool check_if_regular_right() const;
+        bool check_if_automatic() const;
 
         void remove_barren_characters();
         void remove_unreachable_characters();
 
         void reduce_context_free();
         void make_noncontracting();
+
+        const vector<Rule>& getRules() const { return rules; };
+        const Symbol& getStart() const { return start; };
     };
 }
 

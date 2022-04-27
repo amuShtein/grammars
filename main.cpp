@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include "grammars/grammars.h"
+#include "grammars/automata.h"
 
 using namespace std;
 
@@ -108,22 +109,40 @@ int main() {
 
     //     "S"
     // );
+    // Grammar g1(
+    //     { "a", "b", "c", "d", "e", "f", "g"},
+    //     { "S", "A", "B", "C", "E", "D" },
+    //     {   
+    //         string("S -> a.A.B"),
+    //         string("S -> E"),
+    //         string("A -> d.D.A"),
+    //         string("A -> @"),
+    //         string("B -> b.E"),
+    //         string("B -> f"),
+    //         string("C -> c.A.B"),
+    //         string("C -> d.S.D"),
+    //         string("C -> a"),
+    //         string("D -> e.A"),
+    //         string("E -> f.A"),
+    //         string("E -> g"),
+    //     },
+
+    //     "S"
+    // );
+    
     Grammar g1(
-        { "a", "b", "c", "d", "e", "f", "g"},
-        { "S", "A", "B", "C", "E", "D" },
+        { "a", "b" },
+        { "A", "B", "S"},
         {   
-            string("S -> a.A.B"),
-            string("S -> E"),
-            string("A -> d.D.A"),
-            string("A -> @"),
-            string("B -> b.E"),
-            string("B -> f"),
-            string("C -> c.A.B"),
-            string("C -> d.S.D"),
-            string("C -> a"),
-            string("D -> e.A"),
-            string("E -> f.A"),
-            string("E -> g"),
+            string("S -> a"),
+            string("S -> a.A"),
+            string("S -> a.B"),
+
+            string("A -> a.A"),
+            string("A -> a.B"),
+
+            string("B -> a.B"),
+            string("B -> a"),
         },
 
         "S"
@@ -142,17 +161,23 @@ int main() {
     cout << NAMES[REGULAR_LEFT] << " :" << g1.check_if_regular_left() << endl;
     cout << NAMES[AUTOMATIC] << " :" << g1.check_if_automatic() << endl;
 
+    auto a1 = Automatic(g1);
+    cout << "automata: " << endl << a1 << endl;
+    a1.make_deterministic();
+    cout << "automata: " << endl << a1 << endl;
+
     // cout << "make_noncontracting" << endl;
-    g1.reduce_context_free();
+    // g1.remove_barren_characters();
+    // g1.remove_unreachable_characters();
 
-    cout << "gramm g1: " << endl << g1 << endl;
+    // cout << "gramm g1: " << endl << g1 << endl;
 
-    cout << NAMES[TYPE_0] << " :" << g1.check_if_type_zero() << endl;
-    cout << NAMES[NONCONTR] << " :" << g1.check_if_noncontracting() << endl;
-    cout << NAMES[CONT_SENS] << " :" << g1.check_if_context_sensitive() << endl;
-    cout << NAMES[CONT_FREE] << " :" << g1.check_if_context_free() << endl;
-    cout << NAMES[REGULAR] << " :" << g1.check_if_regular() << endl;
-    cout << NAMES[REGULAR_RIGHT] << " :" << g1.check_if_regular_right() << endl;
-    cout << NAMES[REGULAR_LEFT] << " :" << g1.check_if_regular_left() << endl;
-    cout << NAMES[AUTOMATIC] << " :" << g1.check_if_automatic() << endl;
+    // cout << NAMES[TYPE_0] << " :" << g1.check_if_type_zero() << endl;
+    // cout << NAMES[NONCONTR] << " :" << g1.check_if_noncontracting() << endl;
+    // cout << NAMES[CONT_SENS] << " :" << g1.check_if_context_sensitive() << endl;
+    // cout << NAMES[CONT_FREE] << " :" << g1.check_if_context_free() << endl;
+    // cout << NAMES[REGULAR] << " :" << g1.check_if_regular() << endl;
+    // cout << NAMES[REGULAR_RIGHT] << " :" << g1.check_if_regular_right() << endl;
+    // cout << NAMES[REGULAR_LEFT] << " :" << g1.check_if_regular_left() << endl;
+    // cout << NAMES[AUTOMATIC] << " :" << g1.check_if_automatic() << endl;
 }

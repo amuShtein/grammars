@@ -2,7 +2,7 @@
 #include "grammar_types.h"
 
 namespace grammars {
-    bool Grammar::check_if_type_zero() {
+    bool Grammar::check_if_type_zero() const {
         const int32_t current_bit =  GR_BIT(TYPE_0);
 
         if(inf_valid & current_bit) {
@@ -15,7 +15,7 @@ namespace grammars {
         return true;
     };
 
-    bool Grammar::check_if_context_sensitive() {
+    bool Grammar::check_if_context_sensitive() const {
         const int32_t current_bit =  GR_BIT(CONT_SENS);
 
         if(inf_valid & current_bit) {
@@ -74,7 +74,7 @@ namespace grammars {
         return true;
     };
 
-    bool Grammar::check_if_noncontracting() {
+    bool Grammar::check_if_noncontracting() const {
         const int32_t current_bit =  GR_BIT(NONCONTR);
 
         if(inf_valid & current_bit) {
@@ -113,7 +113,7 @@ namespace grammars {
         return true;
     };
 
-    bool Grammar::check_if_context_free() {
+    bool Grammar::check_if_context_free() const {
         const int32_t current_bit =  GR_BIT(CONT_FREE);
         
         if(inf_valid & current_bit) {
@@ -134,7 +134,7 @@ namespace grammars {
         return true;
     };
 
-    bool Grammar::check_if_regular_right() {
+    bool Grammar::check_if_regular_right() const {
         const int32_t current_bit =  GR_BIT(REGULAR_RIGHT);
 
         if(inf_valid & current_bit) {
@@ -163,7 +163,7 @@ namespace grammars {
         return true;
     };
 
-    bool Grammar::check_if_regular_left() {
+    bool Grammar::check_if_regular_left() const {
         const int32_t current_bit =  GR_BIT(REGULAR_LEFT);
 
         if(inf_valid & current_bit) {
@@ -192,7 +192,7 @@ namespace grammars {
         return true;
     };
 
-    bool Grammar::check_if_regular() {
+    bool Grammar::check_if_regular() const {
         const int32_t current_bit =  GR_BIT(REGULAR);
 
         if(inf_valid & current_bit) {
@@ -209,7 +209,7 @@ namespace grammars {
         return false;
     };
 
-    bool Grammar::check_if_automatic() {
+    bool Grammar::check_if_automatic() const {
         const int32_t current_bit =  GR_BIT(AUTOMATIC);
 
         if(inf_valid & current_bit) {
